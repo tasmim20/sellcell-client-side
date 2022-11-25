@@ -13,6 +13,7 @@ const Login = () => {
   const location =  useLocation();
   const from = location.state?.from?.pathname || '/'
 
+  // https://sellcell-f5de6.web.app
 
   const handleGoogleSignIn = () =>{
     providerLogin(googleProvider)
