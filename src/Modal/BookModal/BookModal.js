@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const BookModal = ({buy,setBuy}) => {
     const {name, price2, location,phoneNumber} = buy;
+    const{user} = useContext(AuthContext);
 
     const handleBooking = event =>{
         event.preventDefault();
@@ -14,8 +16,8 @@ const BookModal = ({buy,setBuy}) => {
        
         const booking = {
                phoneBrand:itemName,
-               buyer:myName,
-               email,
+               buyer:user.displayName,
+               email:user.email,
                price,
                meetingLocation:location,
                contactNumber:phoneNumber,
@@ -34,8 +36,8 @@ const BookModal = ({buy,setBuy}) => {
     <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <h3 className="text-3xl font-bold mt-2 mb-6">Booking Now.....</h3>
     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3'>
-    <input type="text" name="myName" placeholder="Your Name" className="input input-success w-full " />
-    <input type="text" name="email" placeholder="Email Address" className="input input-bordered input-success w-full " />
+    <input type="text" name="myName" placeholder="Your Name" disabled value={user.displayName} className="input input-success w-full " />
+    <input type="text" name="email" placeholder="Email Address" disabled value={user.email} className="input input-bordered input-success w-full " />
     <input type="text" name="itemName"  placeholder="Type here" disabled value={name} className="input input-bordered input-success font-semibold w-full " />
     <input type="price" name="price" placeholder="Type here" disabled value={price2} className="input input-bordered input-success font-semibold w-full" />
      <div className='mt-2 flex justify-between text-green-900'>

@@ -9,8 +9,8 @@ const Categories = () => {
     console.log(phones);
     return (
       <div>
-                 <h2 className='text-2xl text-center font-bold my-10'>Available model of {brand}</h2>
-          <div className='grid lg:grid-cols-2 sm:grid-cols-1 my-14'>
+                 <h2 className='text-3xl text-center font-bold my-10'>Available model of {brand}</h2>
+          <div className='grid lg:grid-cols-2 sm:grid-cols-1 my-14 gap-20'>
         {
             phones.map(phone => <Category phone={phone} setBuy={setBuy}></Category>)
         }
