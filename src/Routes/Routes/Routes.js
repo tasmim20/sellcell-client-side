@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom"
 import Main from "../../Layout/Main"
 import Categories from "../../Pages/Categories/Categories";
+import ErrorRoute from "../../Pages/ErrorRoute/ErrorRoute";
 import Home from "../../Pages/Home/Home"
-import Product from "../../Pages/Home/Product/Product";
-import Login from "../../Pages/Login/Login/Login";
-
+import Login from "../../Register/Login/Login";
+import SignUp from "../../Register/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute"
 
 const router = createBrowserRouter([
     {
@@ -16,15 +17,22 @@ const router = createBrowserRouter([
                 element:<Home></Home>,
                 loader: () => fetch("http://localhost:5000/products")
             },
-           
+            {
+               path:'/signUp',
+               element:<SignUp></SignUp>
+            },
             {
                 path:'/login',
                 element:<Login></Login>
             },
             {
                 path:'/categories/:id',
-                element:<Categories></Categories>,
+                element:<PrivateRoute><Categories></Categories></PrivateRoute>,
                 loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path:'*',
+                element: <ErrorRoute></ErrorRoute>
             }
         ]
     }

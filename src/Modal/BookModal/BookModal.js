@@ -1,0 +1,54 @@
+import React from 'react';
+
+const BookModal = ({buy,setBuy}) => {
+    const {name, price2, location,phoneNumber} = buy;
+
+    const handleBooking = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const myName = form.myName.value;
+        const email = form.email.value;
+        const itemName = form.itemName.value;
+        const price = form.price.value;
+    
+       
+        const booking = {
+               phoneBrand:itemName,
+               buyer:myName,
+               email,
+               price,
+               meetingLocation:location,
+               contactNumber:phoneNumber,
+        }
+        console.log(booking);
+        setBuy(null)
+
+
+    }
+
+    return (
+        <>
+           <input type="checkbox" id="book-modal" className="modal-toggle" />
+<div className="modal">
+  <div className="modal-box relative">
+    <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 className="text-3xl font-bold mt-2 mb-6">Booking Now.....</h3>
+    <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3'>
+    <input type="text" name="myName" placeholder="Your Name" className="input input-success w-full " />
+    <input type="text" name="email" placeholder="Email Address" className="input input-bordered input-success w-full " />
+    <input type="text" name="itemName"  placeholder="Type here" disabled value={name} className="input input-bordered input-success font-semibold w-full " />
+    <input type="price" name="price" placeholder="Type here" disabled value={price2} className="input input-bordered input-success font-semibold w-full" />
+     <div className='mt-2 flex justify-between text-green-900'>
+        <h2 >Contact with Seller: {phoneNumber}</h2>
+        <h2>Meeting location: {location}</h2>
+     </div>
+  
+    <input type="submit" value="Submit"  className='w-full btn btn-success my-2 text-black'/>
+    </form>
+  </div>
+</div> 
+        </>
+    );
+};
+
+export default BookModal;
