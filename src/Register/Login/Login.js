@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FaGoogle } from 'react-icons/fa';
 import {GoogleAuthProvider} from 'firebase/auth';
@@ -8,10 +8,10 @@ import {GoogleAuthProvider} from 'firebase/auth';
 
 const Login = () => {
   const {signIn, providerLogin} = useContext(AuthContext);
-
   const googleProvider = new GoogleAuthProvider()
-
   const navigate = useNavigate();
+  const location =  useLocation();
+  const from = location.state?.from?.pathname || '/'
 
 
   const handleGoogleSignIn = () =>{
@@ -34,7 +34,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
-        navigate('/');
+        navigate(from, {replace: true});
     })
     .catch(error => console.error(error))
   }
