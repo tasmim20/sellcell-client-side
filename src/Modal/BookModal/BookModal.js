@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const BookModal = ({buy,setBuy}) => {
@@ -20,10 +21,31 @@ const BookModal = ({buy,setBuy}) => {
                email:user.email,
                price,
                meetingLocation:location,
-               contactNumber:phoneNumber,
+               sellerNumber:phoneNumber,
         }
         console.log(booking);
-        setBuy(null)
+       
+        fetch('http://localhost:5000/bookings', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(booking)
+      })
+          .then(res => res.json())
+          .then(data => {
+              console.log(data);
+              if (data.acknowledged) {
+                setBuy(null)
+                  toast.success('Order confirmed');
+                  // alert('confirmed');
+                 
+              }
+              else{
+                  toast.error(data.message);
+                  // alert(data.message)
+              }
+          })
 
 
     }
@@ -40,8 +62,9 @@ const BookModal = ({buy,setBuy}) => {
     <input type="text" name="email" placeholder="Email Address" disabled value={user.email} className="input input-bordered input-success w-full " />
     <input type="text" name="itemName"  placeholder="Type here" disabled value={name} className="input input-bordered input-success font-semibold w-full " />
     <input type="price" name="price" placeholder="Type here" disabled value={price2} className="input input-bordered input-success font-semibold w-full" />
-     <div className='mt-2 flex justify-between text-green-900'>
+     <div className='mt-2  text-green-900'>
         <h2 >Contact with Seller: {phoneNumber}</h2>
+        
         <h2>Meeting location: {location}</h2>
      </div>
   
