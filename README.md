@@ -10,6 +10,8 @@ Project's features and functionalities:
 6.A blog
 
 
-List of technologies that I was used...
+List of technologies that I used...
 1.Javascript Library : React
 2.CSS FrameWork : TailwindCSS
+
+live-link: https://sellcell-f5de6.web.app
