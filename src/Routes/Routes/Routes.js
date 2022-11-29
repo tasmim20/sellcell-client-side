@@ -18,7 +18,7 @@ const router = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>,
-                loader: () => fetch("http://localhost:5000/products")
+                loader: () => fetch("https://sellcell-server.vercel.app/products")
             },
             {
                path:'/signUp',
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path:'/categories/:id',
                 element:<PrivateRoute><Categories></Categories></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({params})=> fetch(`https://sellcell-server.vercel.app/products/${params.id}`)
             },
             {
                 path:'*',

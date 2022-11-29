@@ -27,7 +27,7 @@ const BookModal = ({buy,setBuy}) => {
         }
         console.log(booking);
        
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://sellcell-server.vercel.app/bookings', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
