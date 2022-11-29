@@ -21,7 +21,7 @@ const Home = () => {
         
         <div>
             <Banner></Banner>
-            <h2 className='text-3xl  my-10 text-center font-bold '>Welcome to the safest marketplace for selling and buying. </h2>
+            <h2 className='text-3xl  my-16 text-center font-bold '>Welcome to the safest marketplace for selling and buying. </h2>
            <div className='grid lg:grid-cols-3  sm:grid-cols-1 gap-10 ' >
             {
                 products.map(product => <Product key={product._id} product={product}></Product>)
