@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+
+
 
 const BookModal = ({buy,setBuy}) => {
     const {name, price2, location,phoneNumber} = buy;
@@ -36,9 +38,21 @@ const BookModal = ({buy,setBuy}) => {
           .then(data => {
               console.log(data);
               if (data.acknowledged) {
-                setBuy(null)
-                  toast.success('Order confirmed');
-                  // alert('confirmed');
+                setBuy(null);
+             
+                  toast.success('Successfully Booked', {
+                    style: {
+                      border: '1px solid #713200',
+                      padding: '16px',
+                      color: 'white',
+                      backgroundColor:'green'
+                    },
+                    iconTheme: {
+                      primary: '#713200',
+                      secondary: '#FFFAEE',
+                    },
+                  });
+                
                  
               }
               else{
@@ -52,6 +66,7 @@ const BookModal = ({buy,setBuy}) => {
 
     return (
         <>
+  
            <input type="checkbox" id="book-modal" className="modal-toggle" />
 <div className="modal">
   <div className="modal-box relative">
@@ -69,9 +84,11 @@ const BookModal = ({buy,setBuy}) => {
      </div>
   
     <input type="submit" value="Submit"  className='w-full btn btn-success my-2 text-black'/>
+  
     </form>
   </div>
 </div> 
+
         </>
     );
 };

@@ -10,6 +10,15 @@ const Category = ({phone, setBuy}) => {
   <figure className=''><img className='h-96 bg-green-200' src={image} alt="phones" /></figure>
   <div className="card-body">
   <h2 className=" text-center text-2xl text-green-700 font-bold">{name}</h2>
+  <div className='mt-4 '>
+    <p>Orginal Price: {price1}</p>
+    <p className='text-green-900 font-bold'>Resale Price: {price2}</p>
+    <p>Year of use: {use}</p>
+    <p>Seller Name: {seller_name}</p>
+    <p>Posted: {posted}</p>
+    <p>Location: {location}</p>
+   
+  </div>
     <div className="card-actions justify-end">
    
       <label htmlFor="book-modal" className="btn  btn-success" onClick={() => setBuy(phone)}>Book Now</label>
