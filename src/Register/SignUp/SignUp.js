@@ -1,27 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
      const {createUser} = useContext(AuthContext);
+     const [passwordError, setPasswordError] = useState('');
+     const [success, setSuccess] = useState(false);
+ 
      const navigate = useNavigate();
 
      const handleSignUp = event =>{
         event.preventDefault();
+        setSuccess(false);
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, email, password);
 
+              // validate password
+              if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
+                setPasswordError('Please provide at least two uppercase');
+                return;
+            }
+            if (password.length < 6) {
+                setPasswordError('Please should be at least 6 characters.');
+                return;
+            }
+            if (!/(?=.*[!@#$&*])/.test(password)) {
+                setPasswordError('Please add at least one special character');
+                return
+            }
+            setPasswordError('');
+
         createUser(email, password)
         .then(result =>{
             const user = result.user;
             console.log(user);
+            setSuccess(true);
             form.reset();
             navigate('/');
         })
-        .catch(error => console.error(error))
+              
+        .catch(error => {
+          console.error(error)
+          setPasswordError(error.message)
+          
+        })
      }
       
 
@@ -63,6 +88,8 @@ const SignUp = () => {
      <input type="radio" name="radio-7" className="radio radio-info" /> 
      <p>Accept terms and condition.?</p>
      </div>
+     <p className='text-error'>{passwordError}</p>
+       {success && <p className='text-black'>User Created Successfully.</p>}
      <div className="form-control mt-6">
         <input type="submit"  className="btn btn-outline-danger  btn-success text-white" value="signUp"/>
        {/* <button type='submit'>Sign Up</button> */}

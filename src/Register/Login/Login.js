@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FaGoogle } from 'react-icons/fa';
@@ -7,6 +7,7 @@ import {GoogleAuthProvider} from 'firebase/auth';
 
 
 const Login = () => {
+  const [success, setSuccess] = useState(false);
   const {signIn, providerLogin} = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider()
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const Login = () => {
   
   const handleSubmit = event =>{
     event.preventDefault();
+    setSuccess(false);
+
     const form =event.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -35,7 +38,9 @@ const Login = () => {
     .then(result =>{
         const user = result.user;
         console.log(user);
+        setSuccess(true);
         form.reset();
+        alert('successfully login')
         navigate(from, {replace: true});
     })
     .catch(error => console.error(error))
@@ -62,7 +67,7 @@ const Login = () => {
           </label>
           <input name='password' type="password" placeholder="password" className="input input-bordered border-zinc-900 bg-white" required />
           <label className="label text-purple-700">
-    
+          {success && <p>Successfully login to the account</p>}
           </label>
         </div>
         <div className="form-control mt-4">

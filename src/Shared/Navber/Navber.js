@@ -38,7 +38,7 @@ const menuITems = <React.Fragment>
        {menuITems}
       </ul>
     </div>
-    <Link className="btn btn-ghost normal-case text-2xl text-green-900" > <FaShopify className='text-green-900'></FaShopify> SellCell</Link>
+    <Link className="btn btn-ghost normal-case text-2xl" > <FaShopify className='text-green-900'></FaShopify> SellCell</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal p-0">
