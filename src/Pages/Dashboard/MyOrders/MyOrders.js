@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import MyOrder from './MyOrder/MyOrder';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const MyOrders = () => {
 
@@ -20,10 +19,31 @@ const MyOrders = () => {
     return (
         <div>
            <h2 className='text-center text-2xl my-10 font-bold text-green-700'>My Orders</h2>
-     <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 my-10'>
-     {
-            bookings.map( booking => <MyOrder key={booking._id} booking ={booking}></MyOrder>)
+     <div className=' my-10'>
+           <div className="overflow-x-auto">
+  <table className="table">
+    
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Payment</th>
+      </tr>
+    </thead>
+    <tbody>
+    {
+            bookings.map( (booking, i) =>   <tr>
+                <th>{i}</th>
+                <td>{booking.phoneBrand}</td>
+                <td>{booking.price}</td>
+                <td className='btn  btn-warning border-none text-red-500'>pay</td>
+              </tr> )
            }
+
+    </tbody>
+  </table>
+</div>
      </div>
 
         </div>
