@@ -8,7 +8,7 @@ const Categories = () => {
     const [buy, setBuy] = useState(null)
     console.log(phones);
     return (
-      <div>
+      <div  className='max-w-[1440px] mx-auto'>
                  <h2 className='text-3xl text-center font-bold my-20'>Available model of {brand}</h2>
           <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 my-14 gap-20'>
         {

@@ -28,7 +28,7 @@ const menuITems = <React.Fragment>
 </React.Fragment>
     return (
         <div>
-            <div className=" navbar font-bold" style={{backgroundColor:'#008339'}}>
+            <div className=" navbar  font-bold" style={{backgroundColor:'#36d399'}}>
   <div className="  navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
